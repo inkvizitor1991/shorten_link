@@ -11,10 +11,10 @@ class LinkQuerySet(models.QuerySet):
 
 class Link(models.Model):
     received_url = models.URLField(
-        'Полученная ссылка', unique=True, max_length=100
+        'Полученная ссылка', unique=True, max_length=200
     )
     short_url = models.URLField(
-        'Новая ссылка', unique=True, max_length=20
+        'Новая ссылка', unique=True, max_length=100
     )
     created_at = models.DateTimeField(
         'Когда создана новая ссылка', auto_now_add=True

@@ -43,10 +43,11 @@ def add_link(request):
                     return render(request, 'link/create_link.html',
                                   {'form': form})
             try:
-                Link(
+                link = Link(
                     received_url=form.cleaned_data.get('received_url'),
                     short_url=slug
-                ).save()
+                )
+                link.save()
                 new_link['slug'] = slug
                 return redirect('prepare_link')
             except:

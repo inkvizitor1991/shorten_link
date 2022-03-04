@@ -1,0 +1,15 @@
+{% extends 'link/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% csrf_token %}
+    <div class="row" style="margin-bottom: 200px; margin-top: 160px;">
+      <div class="col-md-6 offset-md-3">
+        <h3 class="text-center">Ваша ссылка:</h3>
+        <h5 class="text-center"><a href="{{ new_url }}">
+          {{ new_url }}
+        </a></h5>
+        <h3 class="text-center"><a class="btn btn-outline-dark" href="{% url 'index' %}" role="button">Перейти в меню</a></h3>
+      </div>
+    </div>
+{% endblock %}

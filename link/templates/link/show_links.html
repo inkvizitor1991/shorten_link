@@ -1,0 +1,31 @@
+{% extends 'link/base.html' %}
+{% load links_tags %}
+
+{% block content %}
+  <center>
+    <h2>Готовые ссылки</h2>
+  </center>
+
+  <hr/>
+  <br/>
+  <br/>
+  <div class="container">
+   <table class="table table-responsive">
+    <tr>
+      <th>Cсылка</th>
+      <th>slug</th>
+      <th>Время создания</th>
+      <th>Кол-во переходов</th>
+    </tr>
+  {% get_links as links %}
+  {% for link in links %}
+     <tr>
+      <th>{{ link.received_url }}</th>
+      <th>{{ link.short_url }}</th>
+      <th>{{ link.created_at }}</th>
+      <th>{{ link.amount_clicks }}</th>
+    </tr>
+  {% endfor %}
+   </table>
+  </div>
+{% endblock %}

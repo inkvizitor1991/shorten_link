@@ -1,0 +1,36 @@
+{% extends 'link/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <div class="row" style="margin-bottom: 200px; margin-top: 160px;">
+      <div class="col-md-6 offset-md-3">
+        <hr>
+          <form action="{% url 'search_about_links' %}" method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+          <hr>
+          <input type="submit" class="btn btn-dark btn-block" value="Поиск">
+          <a class="btn btn-outline-dark" href="{% url 'index' %}" role="button">Перейти в меню</a></h3>
+        </form>
+      </div>
+    </div>
+    {% if found_links %}
+  <hr/>
+  <br/>
+  <div class="container">
+    <table class="table table-responsive">
+      <tr>
+        <th>Оригинальная ссылка</th>
+        <th>slug</th>
+      </tr>
+      {% for links in found_links %}
+      <tr>
+        <td>{{ links.received_url }}</td>
+        <td>{{ links.short_url }}</td>
+      </tr>
+      {% endfor %}
+      {% endif %}
+    </table>
+  </div>
+{% endblock %}

@@ -35,7 +35,6 @@ class CreateLink(graphene.Mutation):
 
     def mutate(self, info, received_url):
         validate = URLValidator()
-
         try:
             validate(received_url)
         except ValidationError as error:
@@ -43,8 +42,8 @@ class CreateLink(graphene.Mutation):
         url = Link(
             received_url=received_url,
             short_url=BaseUserManager().make_random_password()
-            ).save()
-
+            )
+        url.save()
         return CreateLink(url=url)
 
 

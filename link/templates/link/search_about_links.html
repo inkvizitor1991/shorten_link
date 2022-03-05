@@ -21,13 +21,13 @@
   <div class="container">
     <table class="table table-responsive">
       <tr>
-        <th>Оригинальная ссылка</th>
-        <th>slug</th>
+        <th>Оригинальные ссылки</th>
+        <th>Укороченные ссылки</th>
       </tr>
-      {% for links in found_links %}
+      {% for link in found_links %}
       <tr>
-        <td>{{ links.received_url }}</td>
-        <td>{{ links.short_url }}</td>
+      <th><a href="{{ link.received_url }}">{{ link.received_url }}</a></th>
+      <th><a href="{{ new_url }}{{ link.short_url }}">{{ new_url }}{{ link.short_url }}</a></th>
       </tr>
       {% endfor %}
       {% endif %}

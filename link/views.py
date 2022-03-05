@@ -60,7 +60,11 @@ def add_link(request):
 
 
 def show_links(request):
-    return render(request, 'link/show_links.html')
+    root_url = request.build_absolute_uri('/')
+    context = {
+        'root_url': root_url
+    }
+    return render(request, 'link/show_links.html', context)
 
 
 def index(request):
@@ -69,16 +73,23 @@ def index(request):
 
 @csrf_exempt
 def search_about_links(request):
+    root_url = request.build_absolute_uri('/')
+
     if request.method == 'POST':
         form = SerchLinkForm(request.POST)
         if form.is_valid():
             link = form.cleaned_data.get('link')
             found_links = Link.objects.find_url(link)
+            context = {
+                'form': form,
+                'new_url': root_url,
+                'found_links': found_links
+            }
     else:
         form = SerchLinkForm()
-        found_links = None
-
+        context = {
+            'form': form
+        }
     return render(
-        request, 'link/search_about_links.html',
-        {'form': form, 'found_links': found_links}
+        request, 'link/search_about_links.html', context
     )

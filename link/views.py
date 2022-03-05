@@ -19,7 +19,7 @@ def root(request, short_url):
 
 def prepare_link(request):
     slug = new_link.get('slug')
-    new_url = request.build_absolute_uri(slug)
+    new_url = request.build_absolute_uri(f'/{slug}')
     context = {
         'new_url': new_url
     }

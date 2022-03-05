@@ -16,7 +16,7 @@ urlpatterns = [
     path('prepare_link/', prepare_link, name='prepare_link'),
     path('show_links/', show_links, name='show_links'),
     path('search_about_links/', search_about_links, name='search_about_links'),
-    path('prepare_link/<str:short_url>/', root, name='root'),
+    path('<str:short_url>/', root, name='root'),
     path('', index, name='index'),
 
 ]
